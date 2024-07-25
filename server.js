@@ -18,19 +18,18 @@ const bodyParser = require("body-parser");
 app.use(bodyParser.json());
 
 
-
-
-
 const logRequest = (req, res, next) =>{
-  console.log(`${new Date().toLocaleString()} Request Made To: ${req.originalUrl}`);
+  console.log(`[${new Date().toLocaleString()}] Request Made To: ${req.originalUrl}`);
   next();  // Move to next phase
 }
+
+app.use(logRequest);
 
 app.get("/", function (req, res) {
   res.send("Welcome to the server(waiter house)");
 });
 
-app.get("/idli", logRequest, (req, res) => {
+app.get("/idli", (req, res) => {
   var customized_idli = {
     name: "rava idli",
     size: "10cm diameter",
