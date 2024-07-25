@@ -3,9 +3,9 @@ const mongoose = require('mongoose');
 // env config to hide sensitive data
 require('dotenv').config();
 
-// const mongoUrl = process.env.DB_URL; for mongo atlas paid version
-
-const mongoUrl = process.env.DB_URL_Local; // for local host defined in env hidden
+// for mongo atlas paid version
+const mongoUrl = process.env.DB_URL; 
+// const mongoUrl = process.env.DB_URL_Local; // for local host defined in env hidden
 
 mongoose.connect(mongoUrl, {
     useNewUrlParser: true,
