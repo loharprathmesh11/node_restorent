@@ -1,8 +1,11 @@
 const mongoose = require('mongoose');
 
-// const mongoUrl = 'mongodb://127.0.0.1:27017/resto'
-const mongoUrl = 'mongodb://localhost:27017/resto'
+// env config to hide sensitive data
+require('dotenv').config();
 
+// const mongoUrl = process.env.DB_URL; for mongo atlas paid version
+
+const mongoUrl = process.env.DB_URL_Local; // for local host defined in env hidden
 
 mongoose.connect(mongoUrl, {
     useNewUrlParser: true,

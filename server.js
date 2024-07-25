@@ -7,12 +7,17 @@
 const express = require("express");
 const app = express();
 
-const db = require("./db");
-const menuCard = require('./menu.js');
+const db = require("./routes/db.js");
+const menuCard = require('./routes/menu.js');
+
+// env config to hide sensitive data
+require('dotenv').config();
+
 const bodyParser = require("body-parser");
 app.use(bodyParser.json());
 
-const Person = require("./Person.js");
+
+const Person = require("./routes/Person.js");
 
 app.get("/", function (req, res) {
   res.send("Welcome to the server(waiter house)");
@@ -70,4 +75,5 @@ app.post('/menuInsert', async(req, res)=>{
 //     console.log("data is saved successfully!")
 // })
 
-app.listen(3000);
+const PORT = process.env.PORT || 3000;
+app.listen(PORT);
