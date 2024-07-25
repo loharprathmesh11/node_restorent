@@ -9,6 +9,7 @@ const app = express();
 
 const db = require("./routes/db.js");
 const menuCard = require('./routes/menu.js');
+const Person = require("./routes/Person.js");
 
 // env config to hide sensitive data
 require('dotenv').config();
@@ -17,13 +18,19 @@ const bodyParser = require("body-parser");
 app.use(bodyParser.json());
 
 
-const Person = require("./routes/Person.js");
+
+
+
+const logRequest = (req, res, next) =>{
+  console.log(`${new Date().toLocaleString()} Request Made To: ${req.originalUrl}`);
+  next();  // Move to next phase
+}
 
 app.get("/", function (req, res) {
   res.send("Welcome to the server(waiter house)");
 });
 
-app.get("/idli", (req, res) => {
+app.get("/idli", logRequest, (req, res) => {
   var customized_idli = {
     name: "rava idli",
     size: "10cm diameter",
